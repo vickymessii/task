@@ -21,6 +21,7 @@
 </head>
 <body>
     <div id="app">
+        
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -73,7 +74,19 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div style="display: inline-block; width: 20%">
+                    <div class="bg-light border-right" id="sidebar-wrapper">
+                            <div class="list-group list-group-flush">
+                              <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                              <a href="#" class="list-group-item list-group-item-action bg-light">Company</a>
+                              <a href="#" class="list-group-item list-group-item-action bg-light">Employee</a>
+                              
+                            </div>
+                          </div>
+            </div>
+            <div style="display: inline-block; width: 75%">
+                    @yield('content')
+                    </div>
         </main>
     </div>
 </body>
