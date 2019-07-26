@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompany;
 
 class CompanyController extends Controller
 {
@@ -14,7 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::latest()->paginate(5);
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
@@ -33,9 +35,21 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCompany $request)
     {
-        //
+        // $file = request()->file('logo');
+        // // $file->store('toPath', ['disk' => 'public']);
+        // $name = $file->getClientOriginalName();
+        
+        // $request->offsetUnset('logo');
+        // print_r($request->all());
+        // exit;
+        // $request->merge(['logo'=>$name]);
+        // print_r($request->all());
+        // exit;
+        $company = Company::create($request->all());
+        session()->flash('success','Company Added Successfully');
+        return redirect()->route('company:index');
     }
 
     /**

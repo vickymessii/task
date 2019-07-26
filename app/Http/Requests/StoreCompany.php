@@ -13,7 +13,7 @@ class StoreCompany extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,7 +27,6 @@ class StoreCompany extends FormRequest
             'name' => 'required',
             'email' => 'required|unique:companies|max:255',
             'logo' => 'mimes:jpeg,jpg,png,gif|required|max:10000|dimensions:min_width=100,min_height=100',
-            // 'website' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             'website' => 'required',
             
         ];

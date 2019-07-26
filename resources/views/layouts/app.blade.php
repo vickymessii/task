@@ -77,9 +77,9 @@
             <div style="display: inline-block; width: 20%">
                     <div class="bg-light border-right" id="sidebar-wrapper">
                             <div class="list-group list-group-flush">
-                              <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                              <a href="#" class="list-group-item list-group-item-action bg-light">Company</a>
-                              <a href="#" class="list-group-item list-group-item-action bg-light">Employee</a>
+                              <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                              <a href="{{ route('company:index') }}" class="list-group-item list-group-item-action bg-light">Company</a>
+                              <a href="{{ route('employee:index') }}" class="list-group-item list-group-item-action bg-light">Employee</a>
                             </div>
                           </div>
             </div>
