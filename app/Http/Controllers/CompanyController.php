@@ -37,16 +37,6 @@ class CompanyController extends Controller
      */
     public function store(StoreCompany $request)
     {
-        // $file = request()->file('logo');
-        // // $file->store('toPath', ['disk' => 'public']);
-        // $name = $file->getClientOriginalName();
-        
-        // $request->offsetUnset('logo');
-        // print_r($request->all());
-        // exit;
-        // $request->merge(['logo'=>$name]);
-        // print_r($request->all());
-        // exit;
         $company = Company::create($request->all());
         session()->flash('success','Company Added Successfully');
         return redirect()->route('company:index');

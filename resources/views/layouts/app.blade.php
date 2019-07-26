@@ -21,11 +21,13 @@
 </head>
 <body>
     <div id="app">
-        
+        {{-- <ul><li><a href="{{ url('locale/en') }}" ><i class="fa fa-language"></i> EN</a></li>
+
+            <li><a href="{{ url('locale/fr') }}" ><i class="fa fa-language"></i> FR</a></li></ul> --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Mini-CRM') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -74,14 +76,17 @@
         </nav>
 
         <main class="py-4">
-            <div style="display: inline-block; width: 20%">
-                    <div class="bg-light border-right" id="sidebar-wrapper">
-                            <div class="list-group list-group-flush">
-                              <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                              <a href="{{ route('company:index') }}" class="list-group-item list-group-item-action bg-light">Company</a>
-                              <a href="{{ route('employee:index') }}" class="list-group-item list-group-item-action bg-light">Employee</a>
-                            </div>
-                          </div>
+                <div style="display: inline-block; width: 20%">
+                @guest
+                @else
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                        <a href="{{ route('company:index') }}" class="list-group-item list-group-item-action bg-light">Company</a>
+                        <a href="{{ route('employee:index') }}" class="list-group-item list-group-item-action bg-light">Employee</a>
+                    </div>
+            </div>
+                @endguest
             </div>
             <div style="display: inline-block; width: 75%">
                     @yield('content')

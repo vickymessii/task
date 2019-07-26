@@ -28,7 +28,6 @@ class StoreCompany extends FormRequest
             'email' => 'required|unique:companies|max:255',
             'logo' => 'mimes:jpeg,jpg,png,gif|required|max:10000|dimensions:min_width=100,min_height=100',
             'website' => 'required',
-            
         ];
     }
 }

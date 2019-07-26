@@ -13,7 +13,7 @@ class StoreEmployee extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreEmployee extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name' => 'required',
+            'last_name'=>'required',
+            'email' => 'required|unique:employees|max:255',
+            'phone' => 'required',
+            'company_id' => 'required',
         ];
+    }
+    public function messages()
+    {
+        $messages = [
+            'company_id.required' => 'The select company field is required.',
+        ];
+        return $messages;
     }
 }

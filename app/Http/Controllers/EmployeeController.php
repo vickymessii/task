@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index');
+        $employees = Employee::latest()->with('company')->paginate(10);
+        return view('employee.index', compact('employees'));
     }
 
     /**
@@ -24,7 +27,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        $companies = Company::OrderBy('name','DESC')->get();
+        return view('employee.create',compact('companies'));
     }
 
     /**
@@ -33,9 +37,11 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployee $request)
     {
-        //
+        $Employee = Employee::create($request->all());
+        session()->flash('success','Employee Added Successfully');
+        return redirect()->route('employee:index');
     }
 
     /**

@@ -14,31 +14,28 @@
                         <table class="table">
                                 <thead>
                                   <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">#ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  @foreach ($employees as $employee)
                                   <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                  </tr>
+                                      <th scope="row">{{ $employee->id }}</th>
+                                      <td>{{ $employee->first_name }}</td>
+                                      <td>{{ $employee->last_name }}</td>
+                                      <td>{{ $employee->email }}</td>
+                                      <td>{{ $employee->phone }}</td>
+                                      <td>{{ $employee->company->name }}</td>
+                                      <td class="b-group"><a href="" class="btn btn-primary space">Edit</a><a href="" class="btn btn-primary">Show</a><a href="" class="btn btn-primary">Delete</a></td>
+                                    </tr>
+                                  @endforeach
+                                 
                                 </tbody>
                               </table>
                 </div>
