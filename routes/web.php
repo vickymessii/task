@@ -36,15 +36,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 });
 	
 });
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 // Route::get('locale/{locale}', function ($locale){
 //     Session::put('locale', $locale);
 //     return redirect()->back();
 // });
 
-Auth::routes(['verify' => true]);
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
