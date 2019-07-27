@@ -50,7 +50,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        $company = Company::find($company)->first();
+        return view('company.show',compact('company'));
     }
 
     /**
@@ -61,7 +62,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $company = Company::find($company)->first();
+        return view('company.edit',compact('company'));
     }
 
     /**
@@ -73,7 +75,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company = Company::findOrFail($company)->first()->fill($request->all())->save();
+        session()->flash('success','Company Updated Successfully');
+        return redirect()->route('company:index');
     }
 
     /**
@@ -84,6 +88,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company = Company::findOrFail($company)->first()->delete();
+        session()->flash('success','Company Deleted Successfully');
+        return redirect()->route('company:index');
     }
 }

@@ -45,7 +45,7 @@ td.b-group {
                                       <td>{{ $company->email }}</td>
                                       <td> <img src="{{ asset('storage/'.$company->logo) }}" alt="" style="width: 100px; height: 100px;"></td>
                                       <td>{{ $company->website }}</td>
-                                      <td class="b-group"><a href="" class="btn btn-primary space">Edit</a><a href="" class="btn btn-primary">Show</a><a href="" class="btn btn-primary">Delete</a></td>
+                                      <td class="b-group"><a href="{{ route('company:edit', ['company'=>$company]) }}" class="btn btn-primary space">Edit</a><a href="{{ route('company:show', ['company'=>$company]) }}" class="btn btn-primary">Show</a><a href="{{ route('company:destroy', ['company'=>$company]) }}" class="btn btn-primary">Delete</a></td>
                                     </tr>
                                   @endforeach
                                 </tbody>

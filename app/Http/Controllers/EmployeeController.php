@@ -52,7 +52,9 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        $companies = Company::OrderBy('name','DESC')->get();
+        $employee = Employee::find($employee)->first();
+        return view('employee.show',compact('employee','companies'));
     }
 
     /**
@@ -62,8 +64,9 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Employee $employee)
-    {
-        //
+    {   $companies = Company::OrderBy('name','DESC')->get();
+        $employee = Employee::find($employee)->first();
+        return view('employee.edit',compact('employee','companies'));
     }
 
     /**
@@ -75,7 +78,10 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee = Employee::findOrFail($employee)->first()->fill($request->all())->save();
+        session()->flash('success','Employee Updated Successfully');
+        return redirect()->route('employee:index');
+
     }
 
     /**
@@ -86,6 +92,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee = Employee::findOrFail($employee)->first()->delete();
+        session()->flash('success','Employee Deleted Successfully');
+        return redirect()->route('employee:index');
     }
 }

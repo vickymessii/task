@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Company Create</div>
+                <div class="card-header">Company Update</div>
                 <div class="card-body">
         <form action="{{ route('company:store') }}" method="POST" enctype="multipart/form-data">
             @csrf
