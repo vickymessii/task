@@ -31,19 +31,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('edit/{employee}', 'EmployeeController@edit')->name('edit');
         Route::post('update/{employee}', 'EmployeeController@update')->name('update');
         Route::get('destroy/{employee}', 'EmployeeController@destroy')->name('destroy');
-      });
-    
+      }); 
 });
-	
 });
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('locale/{locale}', function ($locale){
-//     Session::put('locale', $locale);
-//     return redirect()->back();
-// });
-
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
