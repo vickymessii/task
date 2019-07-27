@@ -10,19 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('locale/{locale}', function ($locale){
-    Session::put('locale', $locale);
-    return redirect()->back();
-});
-
-Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+	Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'company', 'as' => 'company:'], function () {
         Route::get('index', 'CompanyController@index')->name('index');
         Route::get('create', 'CompanyController@create')->name('create');
@@ -44,3 +34,17 @@ Route::group(['middleware' => ['auth']], function () {
       });
     
 });
+	
+});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('locale/{locale}', function ($locale){
+//     Session::put('locale', $locale);
+//     return redirect()->back();
+// });
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+

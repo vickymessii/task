@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompany;
+use App\Mail\CompanyRegistered;
+use Mail;
 
 class CompanyController extends Controller
 {
@@ -38,6 +40,7 @@ class CompanyController extends Controller
     public function store(StoreCompany $request)
     {
         $company = Company::create($request->all());
+        Mail::to($company->email)->send(new CompanyRegistered($company));
         session()->flash('success','Company Added Successfully');
         return redirect()->route('company:index');
     }
